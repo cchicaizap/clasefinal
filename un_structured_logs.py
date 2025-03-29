@@ -29,22 +29,22 @@ def create_database_and_table():
 
         # Conectar a la nueva base de datos
         conn = psycopg2.connect(
-        database="cybersecurity_logs",
-        user="postgres",
-        password="postgres",
-        host="localhost",
-        port="5432"
+            database="cybersecurity_logs",
+            user="postgres",
+            password="postgres",
+            host="localhost",
+            port="5432"
         )
         cursor = conn.cursor()
 
         # Crear la tabla "structured_logs" si no existe
         cursor.execute("""
-        CREATE TABLE IF NOT EXISTS structured_logs (
-        id SERIAL PRIMARY KEY,
-        timestamp TIMESTAMP NOT NULL,
-        ip_address VARCHAR(15),
-        event_type VARCHAR(50),
-        description TEXT
+            CREATE TABLE IF NOT EXISTS structured_logs (
+            id SERIAL PRIMARY KEY,
+            timestamp TIMESTAMP NOT NULL,
+            ip_address VARCHAR(15),
+            event_type VARCHAR(50),
+            description TEXT
         );
         """)
         print("Tabla 'structured_logs' creada correctamente.")
@@ -62,18 +62,18 @@ def insert_structured_logs():
     try:
         # Conectar a la base de datos
         conn = psycopg2.connect(
-        database="cybersecurity_logs",
-        user="postgres",
-        password="postgres",
-        host="localhost",
-        port="5432"
+            database="cybersecurity_logs",
+            user="postgres",
+            password="postgres",
+            host="localhost",
+            port="5432"
         )
         cursor = conn.cursor()
 
         # Datos de ejemplo para insertar
         logs = [
-        (datetime(2025, 2, 22, 10, 0, 0), "192.168.1.10", "login_failed", "Intento de inicio de sesión fallido desde IP 192.168.1.10"),
-        (datetime(2025, 2, 22, 10, 5, 0), "192.168.1.15", "access_denied", "Acceso denegado a recurso crítico")
+            (datetime(2025, 2, 22, 10, 0, 0), "192.168.1.10", "login_failed", "Intento de inicio de sesión fallido desde IP 192.168.1.10"),
+            (datetime(2025, 2, 22, 10, 5, 0), "192.168.1.15", "access_denied", "Acceso denegado a recurso crítico")
         ]
 
         # Insertar registros en la tabla
@@ -94,10 +94,10 @@ def insert_structured_logs():
 # Paso 3: Guardar logs no estructurados en un archivo JSON
 def save_unstructured_logs():
     try:
-    # Simulación de logs no estructurados
+        # Simulación de logs no estructurados
         unstructured_logs = [
-        "[2025-02-22 10:10:00] Firewall Alert: Blocked incoming traffic from 10.0.0.1 to port 22.",
-        "[2025-02-22 10:15:00] IDS Alert: Suspicious activity detected from IP 192.168.1.20."
+            "[2025-02-22 10:10:00] Firewall Alert: Blocked incoming traffic from 10.0.0.1 to port 22.",
+            "[2025-02-22 10:15:00] IDS Alert: Suspicious activity detected from IP 192.168.1.20."
         ]
 
         # Guardar logs en un archivo JSON
